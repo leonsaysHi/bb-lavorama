@@ -1,0 +1,21 @@
+<menu id="menu" ng-controller="menuCtrl">
+    <div>
+        <a ng-click="goTo(-1,null)">Prev</a> - <a ng-click="goTo(1,null)">Next</a>
+        <a ng-click="toggleList()" class="list-toggle">+</a>
+    </div>
+    <div ng-class="{'opened': menuisopened}" class="list">
+        <a ng-repeat="item in items" ng-click="goTo(null,$index)">{{item.name}}</a>
+    </div>
+</menu>
+<div id="swaper" ng-controller="swaperCtrl" ng-swipe-left="swiped(1, null)" ng-swipe-right="swiped(-1, null)">    
+    <div 
+        ng-repeat="m in currentitems" 
+        ng-click="goTo(m,$event)"
+        ng-controller="ItemCtrl" 
+        ng-init="item=items[m]" 
+        ng-class="{focused:$index==2}"
+    >
+        <h2>{{item.name}}</h2>
+        <div ng-repeat="i in imgs" class="img"><img ng-src="{{i.src}}"></div>
+    </div>
+</div>

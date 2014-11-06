@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <base href="/">
+    
+    <title>Lavorama</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body data-id="0">  
+    
+    <div id="ui"></div>
+    <div id="swaper"></div>
+
+    <script data-main="/scripts/main" src="/lib/requirejs/require.js"></script>
+
+    <script type="text/template" id="item_tpl">
+      <div class="item">
+        <h1><%= name %></h1>
+      </div>
+    </script>
+
+    <script type="text/template" id="img_tpl">
+      <div class="img">    
+        <img>
+        <div></div>
+      </div>
+    </script>
+
+    <script type="text/template" id="ui_tpl">
+      <div>
+      <span class="swap swapprev">prev</span> | <span class="swap swapnext">next</span><span class="expand">+</span>
+      <nav><% _.each(dates, function(item) { %> <a href="<%= item.date %>.html" data-date="<%= item.date %>"><%= item.name %></a> <% }); %></nav>
+      </div>
+    </script>
+
+  </body>
+</html>

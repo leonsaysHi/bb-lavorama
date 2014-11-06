@@ -1,0 +1,147 @@
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 300;
+  src: url(/fonts/RobotoCondensed-Light.eot);
+  src: local('Roboto Condensed Light'), local('RobotoCondensed-Light'), url(/fonts/RobotoCondensed-Light.eot) format('embedded-opentype'), url(/fonts/RobotoCondensed-Light.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/RobotoCondensed-Regular.eot);
+  src: local('Roboto Condensed Regular'), local('RobotoCondensed-Regular'), url(/fonts/RobotoCondensed-Regular.eot) format('embedded-opentype'), url(/fonts/RobotoCondensed-Regular.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 700;
+  src: url(/fonts/RobotoCondensed-Bold.eot);
+  src: local('Roboto Condensed Regular'), local('RobotoCondensed-Bold'), url(/fonts/RobotoCondensed-Bold.eot) format('embedded-opentype'), url(/fonts/RobotoCondensed-Bold.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: italic;
+  font-weight: 300;
+  src: url(/fonts/RobotoCondensed-LightItalic.eot);
+  src: local('Roboto Condensed Light Italic'), local('RobotoCondensed-LightItalic'), url(/fonts/RobotoCondensed-LightItalic.eot) format('embedded-opentype'), url(/fonts/RobotoCondensed-LightItalic.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: italic;
+  font-weight: 400;
+  src: url(/fonts/RobotoCondensed-Italic.eot);
+  src: local('Roboto Condensed Italic'), local('RobotoCondensed-Italic'), url(/fonts/RobotoCondensed-Italic.eot) format('embedded-opentype'), url(/fonts/RobotoCondensed-Italic.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: italic;
+  font-weight: 700;
+  src: url(/fonts/RobotoCondensed-BoldItalic.eot);
+  src: local('Roboto Condensed Bold Italic'), local('RobotoCondensed-BoldItalic'), url(/fonts/RobotoCondensed-BoldItalic.eot) format('embedded-opentype'), url(/fonts/RobotoCondensed-BoldItalic.woff) format('woff');
+}
+
+html, body {
+	min-height:100%;
+	font-family:'Roboto Condensed', arial, sans serif;
+}
+#swaper {
+	position:relative;
+	height:100%;
+	min-width:800px;
+	overflow: visible;
+}
+#ui {
+	position:fixed;z-index:2;
+	top:0;left:0;right:0;
+	width:100%;
+	border-bottom:solid 1px #dedede;
+	background-color:#fff;
+}
+#ui > div {position:relative;width:750px;margin:0 auto;border:solid 5px #fff;}
+#ui .expand {position:absolute;right:0;top:0;cursor:pointer;}
+#ui nav {display:none;}
+#ui nav.expanded {display:block;}
+#ui nav a {display:inline-block;margin:0 2px;font-size:10px;cursor:pointer;}
+#ui .swap {cursor:pointer;}
+#ui .swap.disabled {cursor:default;opacity:.5;}
+.item {
+	position:absolute;top:0;
+	width:753px;
+	padding:50px 0;
+	font-size:0;line-height:0;
+
+}
+.item h1 {font-size:15px;line-height:15px;}
+.item.animate {
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+.img {
+	position:relative;
+	display:inline-block;
+	width:250px;height:188px;
+	margin:0 0 1px 1px;
+	vertical-align:top;
+}
+.img > div,.img > img {width:250px;height:188px;}
+.img > div {
+	position:absolute;top:0;left:0;background-color:#000;
+
+	-webkit-transition: opacity 0.25s ease-in-out;
+	-moz-transition: opacity 0.25s ease-in-out;
+	-o-transition: opacity 0.25s ease-in-out;
+	-ms-transition: opacity 0.25s ease-in-out;
+	transition: opacity 0.25s ease-in-out;
+}
+
+
+@media (max-width:810px) {
+	#swaper {
+		min-width:600px;
+	}
+	#ui > div {position:relative;width:600px;}
+	.item {
+		width:603px;
+	}
+	.img, .img > div, .img > img {
+		width:200px;
+		height:150px;
+	}
+}
+
+@media (max-width:610px) {
+	#swaper {
+		min-width:403px;
+	}
+	#ui > div {position:relative;width:403px;}
+	.item {
+		width:403px;
+	}
+	.img, .img > div, .img > img {
+		width:130px;
+		height:96px;
+	}
+}
+
+@media (max-width:410px) {
+	#swaper {
+		min-width:333px;
+	}
+	#ui > div {position:relative;width:333px;}
+	.item {
+		width:333px;
+	}
+	.img, .img > div, .img > img {
+		width:110px;
+		height:83px;
+	}
+}
