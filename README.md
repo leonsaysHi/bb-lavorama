@@ -1,9 +1,12 @@
 Lavorama
 ===========
 
-Backbone version of Lavorama.net
+Backbone version of [Lavorama.net](http://www.lavorama.net)
 
-* npm install
-* gulp init
-* gulp dev
-* gulp dist
+Install and use
+-------------
+
+*       npm install
+*       gulp init
+*       gulp dev
+*       gulp dist
