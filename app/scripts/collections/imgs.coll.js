@@ -8,7 +8,7 @@ define([
   var imgsCollection = Backbone.Collection.extend({
 
     model: ImgModel
-    ,url: 'json/images.json.php'
+    ,url: 'http://www.lavorama.net/api/images.json.php'
     ,comparator : 'name'
 
 

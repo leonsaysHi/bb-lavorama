@@ -70,9 +70,9 @@ gulp.task('copy:dist', function() {
     .src(
       [
          './app/.htaccess'
+        ,'./app/favicon.ico'
         ,'./app/fonts/**'
         ,'./app/images/**'
-        ,'./app/json/**'
       ]
       ,{base: './app'}
     )

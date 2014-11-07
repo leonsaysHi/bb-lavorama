@@ -8,7 +8,7 @@ define([
   var itemsCollection = Backbone.Collection.extend({
 
     model: ItemModel
-    ,url: 'json/menu.json.php'
+    ,url: 'http://www.lavorama.net/api/menu.json.php'
     ,comparator : function(item) { return -item.get("raw"); }
 
 
