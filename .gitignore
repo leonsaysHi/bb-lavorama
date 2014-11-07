@@ -1,4 +1,6 @@
 node_modules/
 .sass-cache/
 app/lib/
+dist/
 app/styles/*
+npm-debug.log

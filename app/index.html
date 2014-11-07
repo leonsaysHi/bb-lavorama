@@ -8,14 +8,16 @@
     <title>Lavorama</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+
+    <!-- build:css -->
     <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+
   </head>
   <body data-id="0">  
     
     <div id="ui"></div>
     <div id="swaper"></div>
-
-    <script data-main="/scripts/main" src="/lib/requirejs/require.js"></script>
 
     <script type="text/template" id="item_tpl">
       <div class="item">
@@ -36,6 +38,10 @@
       <nav><% _.each(dates, function(item) { %> <a href="<%= item.date %>.html" data-date="<%= item.date %>"><%= item.name %></a> <% }); %></nav>
       </div>
     </script>
+
+    <!-- build:js -->
+    <script data-main="/scripts/main" src="/lib/requirejs/require.js"></script>
+    <!-- endbuild -->
 
   </body>
 </html>
