@@ -1,7 +1,7 @@
 Lavorama
 ===========
 
-Backbone version of Lavorama
+Backbone version of Lavorama.net
 
 * npm install
 * gulp init
