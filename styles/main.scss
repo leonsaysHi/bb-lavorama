@@ -47,14 +47,19 @@
 }
 
 html, body {
-	min-height:100%;
+	height:100%;
 	font-family:'Roboto Condensed', arial, sans serif;
+}
+.wrapper {
+	overflow:hidden;
+	min-height:100%;
+	width:100%;
 }
 #swaper {
 	position:relative;
 	height:100%;
 	min-width:800px;
-	overflow: visible;
+	overflow:visible;
 }
 #ui {
 	position:fixed;z-index:2;
@@ -63,7 +68,7 @@ html, body {
 	border-bottom:solid 1px #dedede;
 	background-color:#fff;
 }
-#ui > div {position:relative;width:750px;margin:0 auto;border:solid 5px #fff;}
+#ui > div {position:relative;max-width:750px;margin:0 auto;border:solid 5px #fff;}
 #ui .expand {position:absolute;right:0;top:0;cursor:pointer;}
 #ui nav {display:none;}
 #ui nav.expanded {display:block;}
