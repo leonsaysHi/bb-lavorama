@@ -81,8 +81,10 @@ gulp.task('copy:dist', function() {
   return gulp.src('./app/index.html')
     .pipe(htmlreplace({
         'css': 'styles/main.min.css',
-        'js': 'scripts/main.min.js'
+        'js': 'scripts/main.min.js',
+        'body': '<body data-id="<?php echo (isset($_GET[\'d\']) ? $_GET[\'d\'] : 0)?>">'
     }))
+    .pipe(rename("index.php"))
     .pipe(gulp.dest('./dist/'));
 
 });
