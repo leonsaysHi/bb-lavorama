@@ -14,13 +14,13 @@ var
 
   // dist
   ,htmlreplace = require('gulp-html-replace')
-  ,rjs = require('gulp-requirejs')
+  ,rjs = require('gulp-requirejs') 
 ;
 
 
 gulp.task('bower', function() {
   return bower()
-    .pipe(gulp.dest('./app/lib/'))
+    .pipe(gulp.dest('./app/lib/'));
 });
 
 gulp.task('styles:dev', function() {
@@ -30,7 +30,7 @@ gulp.task('styles:dev', function() {
   ;
 });
 gulp.task('watch', function() {
-  return gulp.watch('./styles/*.scss', ['styles']);
+  return gulp.watch('./styles/*.scss', ['styles:dev']);
 });
 
 gulp.task('connect:dev', function() {
@@ -59,9 +59,6 @@ gulp.task('requirejs', function() {
     .pipe(gulp.dest('./dist/scripts/'));
 });
 
-gulp.task('indexhtml', function() {
-  
-});
 
 
 gulp.task('copy:dist', function() {
@@ -117,4 +114,4 @@ gulp.task('init', ['bower']);
 gulp.task('dev', ['styles:dev', 'watch', 'connect:dev']);
 
 // Build ./dist content : copy files + wrap AMD + minify/uglify + server
-gulp.task('dist', ['copy:dist', 'requirejs', 'styles:dist', 'connect:dist']);
+gulp.task('dist', ['copy:dist', 'requirejs', 'styles:dist']);

@@ -20,7 +20,6 @@ define([
     }
 
     ,swipeIt: function(direction){
-      console.log('swipeIt');
       if (direction == 'right' && this._currid<this.collection.length-1) {
           this.doSwap({way:-1});
       }
@@ -52,7 +51,7 @@ define([
     ,updateSwaperWidth: function(){      
       var
         that = this
-        ,ww = $(window).width()
+        ,ww = $('body').width()
         ,ww_bp,itemw
       ;
 
@@ -99,9 +98,6 @@ define([
     ,updateSwaperContainers: function(){
       // position
       this.positionSwaperContainers();
-
-      // loading
-      this.setCurrentItemOn();
     }
 
     ,positionSwaperContainers: function(){
@@ -109,12 +105,10 @@ define([
       if (!_.isNull(ci)) {
         if (ci.h>0) {
           if (this.resizing) { 
-            console.log('resized', ci_h);
             this.$el.height(ci_h);
           }
           else {
             this.$el.height(ci_h);
-            //this.$el.animate({height:ci_h}, 500);
           }
         }
         else {
@@ -123,9 +117,9 @@ define([
           });
         }
       }
-      this.$el.find('[data-pos=prev]').addClass('animate').css('left', this.coo.prev + 'px');
-      this.$el.find('[data-pos=curr]').addClass('animate').css('left', this.coo.curr + 'px');
-      this.$el.find('[data-pos=next]').addClass('animate').css('left', this.coo.next + 'px');
+      this.$el.find('[data-pos=prev]').css('left', this.coo.prev + 'px');
+      this.$el.find('[data-pos=curr]').css('left', this.coo.curr + 'px');
+      this.$el.find('[data-pos=next]').css('left', this.coo.next + 'px');
       $('html, body').animate({scrollTop: 0}, 200);
     }
     
@@ -134,7 +128,7 @@ define([
       
       // add previous item
       if (_.isNull(this.$previtem) && typeof c.at(this._currid+1) !== 'undefined') {
-        _x = this.coo.prevout;
+        _x = this.coo.prev;
         if (!_.isNull(comingfrom)) {
           if (comingfrom=='prev') { _x = this.coo.nextout; }
         }
@@ -149,7 +143,7 @@ define([
 
       // add current item
       if (_.isNull(this.$curritem) && typeof c.at(this._currid) !== 'undefined') {
-        _x = this.coo.prevout;
+        _x = this.coo.prev;
         if (!_.isNull(comingfrom)) {
           if (comingfrom=='prev') { _x = this.coo.nextout; }
         }
@@ -159,7 +153,7 @@ define([
 
       // add next item
       if (_.isNull(this.$nextitem) && typeof c.at(this._currid-1) !== 'undefined') {
-        _x = this.coo.nextout;
+        _x = this.coo.next;
         if (!_.isNull(comingfrom)) {
           if (comingfrom=='next') { _x = this.coo.prevout; }
         }
@@ -170,24 +164,19 @@ define([
       if (!_.isNull(this.$curritem)) { 
         Backbone.history.navigate('/' + this.$curritem.model.get('date'), true);
       }
+    }
 
-      setTimeout(
-        function(){
-          that.updateSwaperContainers();
+    ,setItemShown: function($item, shown){
+      if(_.isNull(shown)) { shown = true; }
+      if (!_.isNull($item)) {
+        if(shown === true) {
+          $item.doShow();
         }
-        ,300
-      );
-    }
-
-    ,setCurrentItemOn: function(){
-      if (!_.isNull(this.$curritem) && !this.$curritemisShown) {
-        this.$curritem.doShow();
+        else {
+          $item.doHide();
+          $item.off('ready');
+        }
       }
-    }
-
-    ,setCurrentItemOff: function(){      
-      if (!_.isNull(this.$curritem)) this.$curritem.doHide();
-      this.$curritem.off('ready')
     }
 
     ,removeItem: function($e, way){
@@ -204,13 +193,15 @@ define([
     
     ,doSwap: function(args){
 
-      if(!_.isNull(this.$curritem)) this.setCurrentItemOff();
+      var self = this;
 
       if (typeof args.way !== 'undefined') {
 
-       if (args.way>0) {
+        this.setItemShown(this.$curritem, false);
 
-        if (!_.isNull(this.$previtem)) { this.removeItem(this.$previtem.$el, 'prev'); }
+        if (args.way>0) {
+
+          if (!_.isNull(this.$previtem)) { this.removeItem(this.$previtem.$el, 'prev'); }
 
           this.$previtem = this.$curritem;
           this.$curritem = this.$nextitem;
@@ -230,9 +221,20 @@ define([
           this._currid++;
         }
 
-        if (!_.isNull(this.$previtem)) this.$previtem.$el.attr('data-pos', 'prev').css('left', this.coo.prev + 'px');
-        if (!_.isNull(this.$curritem)) this.$curritem.$el.attr('data-pos', 'curr').css('left', this.coo.curr + 'px');
-        if (!_.isNull(this.$nextitem)) this.$nextitem.$el.attr('data-pos', 'next').css('left', this.coo.next + 'px');
+        console.log(this.coo);
+        if (!_.isNull(this.$previtem)) {
+          this.$previtem.$el.attr('data-pos', 'prev').animate({left: this.coo.prev}, 400);
+        }
+        if (!_.isNull(this.$curritem)) {
+          this.$curritem.$el.attr('data-pos', 'curr').animate(
+            {left: this.coo.curr},
+            400,
+            function(){ self.setItemShown(self.$curritem, true); }
+          );
+        }
+        if (!_.isNull(this.$nextitem)) {
+          this.$nextitem.$el.attr('data-pos', 'next').animate({left: this.coo.next}, 400);
+        }
 
         this.fillSwaper(null);
 
@@ -276,6 +278,7 @@ define([
         setTimeout( 
           function(){
             that.fillSwaper(removeway);
+            that.setItemShown(that.$curritem, true);
           }
           ,500
         );

@@ -21,11 +21,11 @@ define([
 
     ,doShow: function(){
       if (this.$el.find('img[src]').length==0) {this.doLoad();}
-      else this.$el.find('div').css('opacity', 0);
+      else this.$el.find('div').animate({opacity:0}, 250);
     }
 
     ,doHide: function(){
-      this.$el.find('div').css('opacity', 1);
+      this.$el.find('div').css({opacity:1});
     }
 
     ,doLoad: function(){

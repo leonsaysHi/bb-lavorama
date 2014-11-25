@@ -36,6 +36,7 @@ define([
           that.JSONloaded = true;          
           that.h = that.$el.height();
           that.trigger('ready');
+          console.log('JSON...', that.isShown);
           if (that.isShown) that.doShow();
         }
 
@@ -46,7 +47,8 @@ define([
     ,doShow: function() {
       var that = this;
       this.isShown = true;
-      if (that.JSONloaded) {
+      console.log(this.date, 'show', this.JSONloaded);
+      if (this.JSONloaded) {
         _.each(
           this.imgs
           ,function(img, index, list){

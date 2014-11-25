@@ -60,7 +60,7 @@ require([
       });
 
       // first page
-      var d = $('body').attr('data-id');
+      var d = $('body').attr('data-id');swaperView.fillSwaper('next');
       if (d!='') swaperView.doSwap({date:d});
       else swaperView.doSwap({id:0});
 

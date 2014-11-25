@@ -83,13 +83,6 @@ html, body {
 
 }
 .item h1 {font-size:15px;line-height:15px;}
-.item.animate {
-	-webkit-transition: all 0.5s ease-in-out;
-	-moz-transition: all 0.5s ease-in-out;
-	-o-transition: all 0.5s ease-in-out;
-	-ms-transition: all 0.5s ease-in-out;
-	transition: all 0.5s ease-in-out;
-}
 .img {
 	position:relative;
 	display:inline-block;
@@ -100,12 +93,6 @@ html, body {
 .img > div,.img > img {width:250px;height:188px;}
 .img > div {
 	position:absolute;top:0;left:0;background-color:#000;
-
-	-webkit-transition: opacity 0.25s ease-in-out;
-	-moz-transition: opacity 0.25s ease-in-out;
-	-o-transition: opacity 0.25s ease-in-out;
-	-ms-transition: opacity 0.25s ease-in-out;
-	transition: opacity 0.25s ease-in-out;
 }
 
 
